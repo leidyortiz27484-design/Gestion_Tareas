@@ -183,3 +183,67 @@ h1 {
         grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas grandes */
     }
 }
+/* ==========================================================================
+    NUEVOS ESTILOS PARA ACCIONES (BOTONES Y ESTADOS)
+   ========================================================================== */
+.acciones {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--color-borde);
+    padding-top: 12px;
+}
+
+.btn-accion {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-accion:active {
+    transform: scale(0.96);
+}
+
+.btn-completar {
+    background-color: #e6f4ea;
+    color: var(--color-exito);
+}
+
+.btn-completar:hover {
+    background-color: #d2f1da;
+}
+
+.btn-eliminar {
+    background-color: #fce8e6;
+    color: var(--color-error);
+}
+
+.btn-eliminar:hover {
+    background-color: #fcd7d4;
+}
+
+/* Modificación visual cuando la tarea está completada */
+.tarea-item.completada {
+    border-left-color: var(--color-exito);
+    opacity: 0.65;
+}
+
+.tarea-item.completada h3 {
+    text-decoration: line-through;
+    color: var(--color-texto-secundario);
+}
+
+/* Colores dinámicos para las etiquetas de estado */
+.meta strong.badge-completada {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.meta strong.badge-pendiente {
+    background-color: #fef3c7;
+    color: #92400e;
+}
