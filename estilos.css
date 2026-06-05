@@ -1,0 +1,185 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN GENERAL Y VARIABLES
+   ========================================================================== */
+:root {
+    --color-fondo: #f4f7f6;
+    --color-tarjeta: #ffffff;
+    --color-texto: #2d3748;
+    --color-texto-secundario: #718096;
+    --color-primario: #4f46e5;       /* Azul índigo moderno */
+    --color-primario-hover: #4338ca;
+    --color-borde: #e2e8f0;
+    --color-error: #ef4444;
+    --color-exito: #10b981;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   2. ESTRUCTURA Y CONTENEDOR PRINCIPAL
+   ========================================================================== */
+.contenedor {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+h1 {
+    color: var(--color-texto);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.tarjeta {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    padding: 25px;
+}
+
+.tarjeta h2 {
+    color: var(--color-primario);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-fondo);
+    padding-bottom: 8px;
+}
+
+/* ==========================================================================
+   3. ESTILOS DEL FORMULARIO
+   ========================================================================== */
+.grupo-control {
+    margin-bottom: 20px;
+}
+
+.grupo-control label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.grupo-control input[type="text"],
+.grupo-control input[type="date"],
+.grupo-control textarea {
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    color: var(--color-texto);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.grupo-control input:focus,
+.grupo-control textarea:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    outline: none;
+}
+
+.btn-guardar {
+    background-color: var(--color-primario);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 20px;
+    transition: background-color 0.2s;
+    width: 100%;
+}
+
+.btn-guardar:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* ==========================================================================
+   4. LISTADO DE TAREAS Y TARJETAS INDIVIDUALES
+   ========================================================================== */
+.lista {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+}
+
+.tarea-item {
+    border-left: 5px solid var(--color-primario);
+    background-color: var(--color-fondo);
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.tarea-item h3 {
+    font-size: 1.15rem;
+    margin-bottom: 5px;
+}
+
+.tarea-item p {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+.meta strong {
+    background-color: #e0e7ff;
+    color: var(--color-primario);
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   5. COMPONENTES DE ALERTAS Y RESPONSIVE (MÓVIL)
+   ========================================================================== */
+.alerta {
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 12px;
+    text-align: center;
+}
+
+.alerta.error {
+    background-color: #fee2e2;
+    color: var(--color-error);
+    border: 1px solid #fca5a5;
+}
+
+/* Diseño adaptivo para pantallas medianas y grandes */
+@media (min-width: 768px) {
+    body {
+        padding: 4px 0;
+    }
+    
+    .contenedor {
+        padding: 40px 20px;
+    }
+
+    .lista {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas grandes */
+    }
+}
