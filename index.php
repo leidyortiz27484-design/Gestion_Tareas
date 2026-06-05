@@ -1,5 +1,5 @@
 <?php
-// index.php (Controlador Principal)
+// index.php (Controlador Gestor de tareas)
 
 // 1. Cargar dependencias esenciales
 require_once 'conexion.php';
