@@ -54,26 +54,34 @@ gestion_tareas/
 
 Para replicar este proyecto en tu entorno local, asegúrate de cumplir con los siguientes pasos:
 
+Gracias a la contenedorización, no necesitas instalar XAMPP ni configurar bases de datos manualmente en tu máquina local. Solo requieres tener instalado [Docker Desktop](https://docker.com).
+
 ### 1. Clonar el repositorio
-Abre tu terminal en la carpeta `htdocs` de XAMPP y ejecuta:
+Abre tu terminal en cualquier carpeta de tu computadora y ejecuta:
 ```bash
 git clone https://github.com
+cd gestion_tareas_php
 ```
 
-### 2. Configurar la Base de Datos
-1. Abre tu gestor de base de datos (como MySQL Workbench).
-2. Abre e importa el archivo `database.sql` ubicado en la raíz del proyecto para generar automáticamente el esquema `gestion_tareas`, las tablas y el usuario de pruebas.
+### 2. Desplegar con Docker Compose
+Asegúrate de tener Docker Desktop abierto. Luego, en la terminal de la raíz del proyecto, ejecuta el siguiente comando mágico:
+```bash
+docker compose up -d --build
+```
+*Este comando descargará las imágenes oficiales de PHP y MySQL, compilará tu entorno aislado, creará la base de datos e importará automáticamente la estructura y los datos de prueba desde el archivo `database.sql`.*
 
-### 3. Ejecutar el Servidor
-1. Inicia los módulos de **Apache** y **MySQL** en tu panel de XAMPP.
-2. Abre tu navegador e ingresa a: `http://localhost/gestion_tareas/index.php`
-
----
-
-## 📸 Demostración del Proyecto
-![Vista Principal de la Aplicación](captura.png)
+### 3. Acceder a la Aplicación
+Abre tu navegador web favorito e ingresa a la siguiente dirección:
+* **Aplicación Web:** `http://localhost:8080/index.php`
 
 ---
+
+### 🔍 Gestión Local de la Base de Datos (Opcional)
+Si deseas conectar un gestor visual como **MySQL Workbench** a la base de datos que corre dentro del contenedor, utiliza los siguientes datos de conexión:
+* **Host:** `127.0.0.1` (o `localhost`)
+* **Puerto:** `3307` *(mapeado externamente para evitar conflictos con instalaciones locales)*
+* **Usuario:** `root`
+* **Contraseña:** `root_password`
 
 ## ⚖️ Licencia
 Este proyecto es de código abierto y está disponible bajo los términos de la [Licencia MIT](LICENSE). Puedes usarlo y modificarlo libremente para tu aprendizaje o portafolio.
