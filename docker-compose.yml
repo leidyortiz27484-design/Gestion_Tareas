@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Servicio 1: El servidor Web con nuestro PHP y Apache
+  web:
+    build: .
+    container_name: app_gestion_tareas
+    ports:
+      - "8080:80" # Mapea el puerto 8080 de tu PC al puerto 80 del contenedor
+    volumes:
+      - .:/var/www/html # Sincroniza tus archivos locales con el contenedor para ver cambios en vivo
+    depends_on:
+      - db # Espera a que la base de datos inicie antes de arrancar la web
+    networks:
+      - red-tareas
+
+  # Servicio 2: El motor de base de datos MySQL
+  db:
+    image: mysql:8.0
+    container_name: mysql_gestion_tareas
+    ports:
+      - "3307:3306" # Usamos el 3307 local por si ya tienes tu MySQL Workbench ocupando el 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: gestion_tareas
+    volumes:
+      - db_data:/var/lib/mysql
+      # Importa automáticamente tu script SQL al iniciar por primera vez
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    networks:
+      - red-tareas
+
+volumes:
+  db_data:
+
+networks:
+  red-tareas:
+    driver: bridge

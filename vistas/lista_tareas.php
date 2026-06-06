@@ -31,7 +31,15 @@
                     <label for="descripcion">Descripción (Opcional):</label>
                     <textarea id="descripcion" name="descripcion" rows="3" placeholder="Añade detalles sobre la tarea..."></textarea>
                 </div>
-
+<div class="grupo-control">
+    <label for="categoria_id">Categoría (Opcional):</label>
+    <select id="categoria_id" name="categoria_id">
+        <option value="">-- Sin Categoría --</option>
+        <?php foreach ($categorias as $cat): ?>
+            <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['nombre']); ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
                 <div class="grupo-control">
                     <label for="fecha_limite">Fecha Límite:</label>
                     <input type="date" id="fecha_limite" name="fecha_limite">
@@ -54,11 +62,18 @@
                             <p><?php echo htmlspecialchars($tarea['descripcion']); ?></p>
                             
                             <div class="meta">
-                                <span>Estado: <strong class="badge-<?php echo $tarea['estado']; ?>"><?php echo $tarea['estado']; ?></strong></span>
-                                <?php if ($tarea['fecha_limite']): ?>
-                                    <span>⏱ Vence: <?php echo $tarea['fecha_limite']; ?></span>
-                                <?php endif; ?>
-                            </div>
+                      <span>Estado: <strong class="badge-<?php echo $tarea['estado']; ?>"><?php echo $tarea['estado']; ?></strong></span>
+    
+              <!-- NUEVO: Mostrar el nombre de la categoría si no es null -->
+                        <?php if (!empty($tarea['categoria_nombre'])): ?>
+                   <span>📁 Categoría: <strong><?php echo htmlspecialchars($tarea['categoria_nombre']); ?></strong></span>
+                        <?php endif; ?>
+
+                     <?php if ($tarea['fecha_limite']): ?>
+                     <span>⏱ Vence: <?php echo $tarea['fecha_limite']; ?></span>
+                     <?php endif; ?>
+                     </div>
+
 
                             <div class="acciones">
                                 <?php if ($tarea['estado'] === 'pendiente'): ?>

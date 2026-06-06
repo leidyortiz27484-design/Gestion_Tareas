@@ -1,13 +1,14 @@
 <?php
-// Datos de configuración del servidor local de XAMPP
-$host = 'localhost';
+// Configuración adaptada para Docker
+$host = 'db'; // Nombre del servicio definido en docker-compose.yml
 $db   = 'gestion_tareas';
-$user = 'root';        // Usuario por defecto en XAMPP
-$pass = '';            // Contraseña por defecto en XAMPP (vacía)
-$charset = 'utf8mb4';  // Soporte para caracteres especiales y emojis
+$user = 'root';        
+$pass = 'root_password'; // Contraseña definida en docker-compose.yml
+$charset = 'utf8mb4';  
 
-// Cadena de conexión (Data Source Name)
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+// ... (El resto del código try/catch se queda exactamente igual)
+
 
 // Opciones de configuración para máxima seguridad y reporte de errores
 $options = [

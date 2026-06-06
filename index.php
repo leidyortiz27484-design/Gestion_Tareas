@@ -32,16 +32,22 @@ if (isset($_GET['accion']) && isset($_GET['id'])) {
     }
 }
 
+
+
 // 4. CAPA CONTROLADORA: Procesar envío de formulario (POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = trim($_POST['titulo']);
     $descripcion = trim($_POST['descripcion']);
     $fecha_limite = !empty($_POST['fecha_limite']) ? $_POST['fecha_limite'] : null;
+    
+    // NUEVO: Capturar la categoría seleccionada (si no elige ninguna, se guarda como null)
+    $categoria_id = !empty($_POST['categoria_id']) ? intval($_POST['categoria_id']) : null;
     $usuario_id = 1; 
 
     if (!empty($titulo)) {
         try {
-            $modeloTarea->crear($usuario_id, $titulo, $descripcion, $fecha_limite);
+            // MODIFICADO: Pasamos el $categoria_id al modelo
+            $modeloTarea->crear($usuario_id, $categoria_id, $titulo, $descripcion, $fecha_limite);
             header("Location: index.php");
             exit;
         } catch (Exception $e) {
@@ -54,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // 5. Cargar los datos necesarios para la pantalla
 $tareas = $modeloTarea->obtenerTodas();
+$categorias = $modeloTarea->obtenerCategorias(); // NUEVO: Cargamos las categorías para el select
 
 // 6. Cargar la vista correspondiente
 require_once 'vistas/lista_tareas.php';
