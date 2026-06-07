@@ -85,3 +85,5 @@ Si deseas conectar un gestor visual como **MySQL Workbench** a la base de datos 
 
 ## ⚖️ Licencia
 Este proyecto es de código abierto y está disponible bajo los términos de la [Licencia MIT](LICENSE). Puedes usarlo y modificarlo libremente para tu aprendizaje o portafolio.
+## Historial de Cambios
+- [x] Integración de Jenkins con Docker y Webhook completada con éxito.
