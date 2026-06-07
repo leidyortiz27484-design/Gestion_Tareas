@@ -30,9 +30,35 @@ services:
     networks:
       - red-tareas
 
+  # Servicio 3: El gestor de operaciones Jenkins
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins_gestion_tareas
+    user: root # Da permisos para ejecutar acciones en el volumen
+    ports:
+      - "8085:8080" # Jenkins web en el puerto 8085 de tu PC
+      - "50000:50000" # Puerto interno para agentes de Jenkins
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock # Le presta el Docker de tu PC a Jenkins
+    networks:
+      - red-tareas
+
+    # Servicio 4: El túnel de internet libre para el Webhook de GitHub
+    # Servicio 4: El túnel de internet libre para el Webhook de GitHub
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare_tunnel
+    command: tunnel --url http://jenkins_gestion_tareas:8080
+    restart: always
+    networks:
+      - red-tareas
+
 volumes:
   db_data:
+  jenkins_data: # Almacena de forma segura tus pipelines y configuraciones
 
 networks:
   red-tareas:
     driver: bridge
+
